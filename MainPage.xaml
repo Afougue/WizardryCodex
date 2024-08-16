@@ -1,32 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WizardryCodex.Model"
              x:Class="WizardryCodex.MainPage">
 
+    <ContentPage.BindingContext>
+        <local:Character />
+    </ContentPage.BindingContext>
+
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit" />
+        <StackLayout Padding="10">
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+            <!-- Character Info -->
+            <Frame BorderColor="Black" CornerRadius="5" Padding="10" Margin="0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}" />
+                    <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" WidthRequest="50" HeightRequest="90" Source="test.png" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-        </VerticalStackLayout>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
+                    <Label Grid.Row="0" Grid.Column="2">
+                        <Label.Text>
+                            <MultiBinding StringFormat="Hp: {0}/{1}">
+                                <Binding Path="Hp" />
+                                <Binding Path="MaxHp" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding ArmorClass, StringFormat='Armor class: {0}'}" />
+                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding Speed, StringFormat='Speed: {0}m'}" />
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding CharacterClass, StringFormat='Class: {0}'}" />
+                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding Race, StringFormat='Race: {0}'}" />
+                </Grid>
+            </Frame>
+
+            <!-- Skills -->
+            <Frame BorderColor="Black" CornerRadius="5" Padding="10" Margin="0,10">
+                <StackLayout>
+                    <Label Text="Skills" FontAttributes="Bold" FontSize="Medium" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Text="Acrobatics" />
+                        <Entry Grid.Row="0" Grid.Column="1" x:Name="Acrobatics" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="1" Text="Animal Handling" />
+                        <Entry Grid.Row="1" Grid.Column="1" x:Name="AnimalHandling" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="2" Text="Arcana" />
+                        <Entry Grid.Row="2" Grid.Column="1" x:Name="Arcana" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="3" Text="Athletics" />
+                        <Entry Grid.Row="3" Grid.Column="1" x:Name="Athletics" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="4" Text="Deception" />
+                        <Entry Grid.Row="4" Grid.Column="1" x:Name="Deception" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="5" Text="History" />
+                        <Entry Grid.Row="5" Grid.Column="1" x:Name="History" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="6" Text="Insight" />
+                        <Entry Grid.Row="6" Grid.Column="1" x:Name="Insight" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="7" Text="Intimidation" />
+                        <Entry Grid.Row="7" Grid.Column="1" x:Name="Intimidation" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="8" Text="Investigation" />
+                        <Entry Grid.Row="8" Grid.Column="1" x:Name="Investigation" Keyboard="Numeric" WidthRequest="50" />
+
+                        <Label Grid.Row="9" Text="Medicine" />
+                        <Entry Grid.Row="9" Grid.Column="1" x:Name="Medicine" Keyboard="Numeric" WidthRequest="50" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
     </ScrollView>
-
 </ContentPage>
